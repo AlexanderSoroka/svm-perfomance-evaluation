@@ -7,11 +7,33 @@
 #include <iostream>
 #include <thread>
 
-#include "scoped_timer.h"
+#include "test.h"
+
+class SleepTest
+{
+public:
+    const char* Name() const
+    {
+        return "Sleepy";
+    }
+
+    void Execute() const
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    }
+};
+
+class NullData
+{
+public:
+    const char* Description() const
+    {
+        return "Null dataset";
+    }
+};
 
 int main()
 {
-    ScopedTimer timer(__PRETTY_FUNCTION__);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    TestExecutor::Evaluate(SleepTest(), NullData());
     return 0;
 }

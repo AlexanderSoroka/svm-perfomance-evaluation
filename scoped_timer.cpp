@@ -12,12 +12,13 @@ ScopedTimer::ScopedTimer(const std::string& message)
     : message_(message)
     , start_(std::chrono::high_resolution_clock::now())
 {
-    std::cerr << "[timer " << message_ << "] start";
+    std::cerr << "[" << message_ << "] started";
 }
 
 ScopedTimer::~ScopedTimer()
 {
     std::chrono::nanoseconds duration = std::chrono::high_resolution_clock::now()
                                        - start_;
-    std::cerr << "[timer " << message_ << "] elapsed " << duration.count() << ", ns";
+    std::cerr << ", finished, elapsed time = "
+              << duration.count() << ", ns" << std::endl;
 }
