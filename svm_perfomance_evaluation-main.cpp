@@ -10,6 +10,11 @@
 #include "datasets/climate_model_crashes.h"
 #include "test.h"
 
+namespace
+{
+const char* kDatasetFilePath = "/projects/uci-datasets/climate-model-crashes/pop_failures.dat";
+}
+
 class SleepTest
 {
 public:
@@ -35,7 +40,7 @@ public:
 
 int main()
 {
-    dataset::ClimateModelCrashesData<double> data_model("/projects/uci-datasets/climate-model-crashes/pop_failures.dat");
-    TestExecutor::Evaluate(SleepTest(), NullData());
+    dataset::ClimateModelCrashesData<double> data_model(kDatasetFilePath);
+    TestExecutor::Evaluate(SleepTest(), data_model);
     return 0;
 }
