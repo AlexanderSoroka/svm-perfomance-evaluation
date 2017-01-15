@@ -7,6 +7,7 @@
 #include <iostream>
 #include <thread>
 
+#include "datasets/climate_model_crashes.h"
 #include "test.h"
 
 class SleepTest
@@ -34,6 +35,7 @@ public:
 
 int main()
 {
+    dataset::ClimateModelCrashesData<double> data_model("/projects/uci-datasets/climate-model-crashes/pop_failures.dat");
     TestExecutor::Evaluate(SleepTest(), NullData());
     return 0;
 }
